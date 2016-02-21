@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD Xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<style>
+		body{
+			font-size:9pt;
+		
+		}
+		
+		div{
+			border: 1px solid #999999;
+			margin:20px;
+			margin-bottom:20px;
+		}
+		div div{
+			border: 1px dotted #CCC;
+			font-size:20px;	
+		}
+		
+		#panel {
+			width:600px;
+			overflow:visible;		
+		}
+		
+	</style>
+	<script>
+		var increaseCount = 0;
+		function getRandomSize() {
+			var randomNumber = createRandom();
+			var fontSize;
+			switch (randomNumber) {
+				case 0 :
+					fontSize = "10";
+					break;
+				case 1 :
+					fontSize = "20";
+					break;
+				case 2 :
+					fontSize = "30";
+					break;
+				case 3 :
+					fontSize = "40";
+					break;
+				case 4 :
+					fontSize = "50";
+					break;
+				default :
+					fontSize = "50";
+					break;
+			}
+			console.log(fontSize);
+			return fontSize;
+		}
+		function createRandom() {
+			var randomNumber = Math.floor(Math.random() * 10) % 5;
+			return randomNumber;
+		}
+		function getRandomColor() {
+			var color = "red";
+			var randomNumber = createRandom();
+			switch (randomNumber) {
+				case 0 :
+					color = "yellow";
+					break;
+				case 1 :
+					color = "black";
+					break;
+				case 2 :
+					color = "blue";
+					break;
+				case 3 :
+					color = "green";
+					break;
+				case 4 :
+					color = "pink";
+					break;
+				default :
+					color = "white";
+					break;
+			}
+			console.log(color);
+			return color;
+
+		}
+
+		function addElement(element) {
+			var spanElement = document.createElement("span");
+			spanElement.style.display = "inline-block";
+			spanElement.style.color = getRandomColor();
+			spanElement.style.fontSize = getRandomSize() + "px";
+			spanElement.innerText += increaseCount;
+			element.appendChild(spanElement);
+		}
+		window.onload=function(){
+			window.setInterval(
+					function() {
+						increaseCount++;
+						this.window.scrollTo(0, window.document.body.scrollHeight);
+
+						var element = document.getElementById("panel");
+						addElement(element);
+
+					}, 1000
+			)
+		}
+
+
+	</script>
+</head>
+
+<body>
+	<div> 
+		<h4>미션2 - 1초에 하나씩 1부터 숫자를 증가시키며 #panel에 추가 시켜 주세요.<br> 단, 폰트 크기( 10px~ 50px)와 색은  랜덤으로 설정해주세요.</h4>
+		<div id="panel">
+		</div>
+	</div>
+</body>
+</html>
